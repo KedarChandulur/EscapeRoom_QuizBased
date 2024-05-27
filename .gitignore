@@ -70,3 +70,129 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Assets which can be imported
+
+# BPS Prefabs folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/_[Pp]refabs/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/_[Pp]refabs.meta
+
+# BPS Materials folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Mm]aterials/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Mm]aterials.meta
+
+# BPS Models folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Mm]odels/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Mm]odels.meta
+
+# BPS Textures folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Tt]extures/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Tt]extures.meta
+
+# Door Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]oors/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]oors/*.anim.meta
+
+# Door Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]oors/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]oors/*.controller.meta
+
+# BPS Drawer X Axis Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Xx] [Aa]xis/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Xx] [Aa]xis/*.anim.meta
+
+# BPS Drawer X Axis Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Xx] [Aa]xis/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Xx] [Aa]xis/*.controller.meta
+
+# BPS Drawer Z Axis Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Zz] [Aa]xis/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Zz] [Aa]xis/*.anim.meta
+
+# BPS Drawer Z Axis Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Zz] [Aa]xis/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Dd]rawer/[Zz] [Aa]xis/*.controller.meta
+
+# First Person Player folder anim(Mostly no anims and controllers)
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ff]irst [Pp]erson [Pp]layer/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ff]irst [Pp]erson [Pp]layer/*.anim.meta
+
+# First Person Player folder controller(Mostly no anims and controllers)
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ff]irst [Pp]erson [Pp]layer/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ff]irst [Pp]erson [Pp]layer/*.controller.meta
+
+# BPS Window Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ww]indows/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ww]indows/*.anim.meta
+
+# BPS Window Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ww]indows/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ww]indows/*.controller.meta
+
+# Apartment Kit Prefabs folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/_[Pp]refabs/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/_[Pp]refabs.meta
+
+# Apartment Kit Scenes folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Ss]cenes/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Ss]cenes.meta
+
+# Apartment Kit Materials folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Mm]aterials/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Mm]aterials.meta
+
+# Apartment Kit Models folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Mm]odels/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Mm]odels.meta
+
+# Apartment Kit Textures folder
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Tt]extures/*
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Tt]extures.meta
+
+# Apartment Kit Z Axis Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Zz] [Aa]xis -1/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Zz] [Aa]xis -1/*.anim.meta
+
+# Apartment Kit Z Axis Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Zz] [Aa]xis -1/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Zz] [Aa]xis -1/*.controller.meta
+
+# Apartment Kit Window Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ww]indows/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ww]indows/*.anim.meta
+
+# Apartment Kit Window Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ww]indows/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ww]indows/*.controller.meta
+
+# Table Flip Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Tt]able[Ff]lip/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Tt]able[Ff]lip/*.anim.meta
+
+# Table Flip Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Tt]able[Ff]lip/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Tt]able[Ff]lip/*.controller.meta
+
+# Slide Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ss]lide/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ss]lide/*.anim.meta
+
+# Slide Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ss]lide/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Ss]lide/*.controller.meta
+
+# Oven Open Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Oo]ven[Oo]pen/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Oo]ven[Oo]pen/*.anim.meta
+
+# Oven Open Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Oo]ven[Oo]pen/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Oo]ven[Oo]pen/*.controller.meta
+
+# Closet Animations
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Cc]loset/*.anim
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Cc]loset/*.anim.meta
+
+# Closet Animation Controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Cc]loset/*.controller
+/[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/[Aa]partment Kit/[Cc]ommon/[Ss]cripts & [Aa]nimation/[Cc]loset/*.controller.meta
