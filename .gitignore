@@ -200,3 +200,5 @@ crashlytics-build.properties
 # SceneSwitchGen Script ignored.
 /[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ff]irst [Pp]erson [Pp]layer/SceneSwitchGen.cs
 /[Aa]ssets/[Bb]rick [Pp]roject [Ss]tudio/_[Bb]PS [Bb]asic [Aa]ssets/[Cc]ommon/[Ss]cripts [Aa]nd [Aa]nimations/[Ff]irst [Pp]erson [Pp]layer/SceneSwitchGen.cs.meta
+
+/[Aa]ssets/[Tt]ext[Mm]esh [Pp]ro/*
