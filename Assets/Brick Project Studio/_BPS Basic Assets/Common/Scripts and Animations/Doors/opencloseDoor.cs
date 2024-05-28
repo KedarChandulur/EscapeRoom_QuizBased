@@ -3,9 +3,17 @@ using UnityEngine;
 
 public class opencloseDoor : Openable
 {
+    [SerializeField]
+    private bool canOpen = true;
+
     void Start()
     {
         base.Setup(15.0f);
+    }
+
+    protected override bool IsEligibleToOpen()
+    {
+        return canOpen;
     }
 
     protected override IEnumerator OpenAnim()

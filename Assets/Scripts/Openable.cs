@@ -6,9 +6,6 @@ public abstract class Openable : MonoBehaviour
     private Animator anim;
     private Transform player;
     private float interactableDistance;
-
-    [SerializeField]
-    private bool canOpen = true;
     private bool isOpen;
 
     protected void Setup(float playerInteractableDistance)
@@ -42,7 +39,7 @@ public abstract class Openable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(!canOpen)
+        if(!IsEligibleToOpen())
         {
             return;
         }
@@ -71,6 +68,11 @@ public abstract class Openable : MonoBehaviour
                 isOpen = !isOpen;
             }
         }
+    }
+
+    protected virtual bool IsEligibleToOpen()
+    {
+        return true;
     }
 
     protected void PlayAnimation(string name)
