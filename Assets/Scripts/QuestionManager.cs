@@ -20,6 +20,12 @@ public class QuestionManager
 
     private readonly LivesManager livesManager = new LivesManager();
 
+    public static System.Action<int> OnQuestionClose;
+    public static System.Action<Question> OnQuestionCloseCallback;
+
+    private Question currentQuestion;
+    private int currentInstanceID = 0;
+
     public void Initialize(UnityEngine.Transform questionPresetRef, UIManager uiManagerRef)
     {
         livesManager.Initialize(uiManagerRef);
@@ -144,7 +150,12 @@ public class QuestionManager
         closeButton.onClick.RemoveAllListeners();
     }
 
-    public void ShowQuestion(Question questionRef)
+    public bool IsShowingQuestion()
+    {
+        return questionPreset.activeSelf;
+    }
+
+    public void ShowQuestion(Question questionRef, int instanceID)
     {
         this.Reset();
 
@@ -177,6 +188,9 @@ public class QuestionManager
         }
 
         questionPreset.SetActive(true);
+
+        this.currentQuestion = questionRef;
+        this.currentInstanceID = instanceID;
     }
 
     private void Set2Questions(string correct_answer)
@@ -185,21 +199,21 @@ public class QuestionManager
         {
             // Correct Answer.
             firstButtonText.text = "True";
-            firstButton.onClick.AddListener(() => { this.Reset(); });
+            firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
 
             // Wrong Answer.
             secondButtonText.text = "False";
-            secondButton.onClick.AddListener(() => { this.Reset(true); });
+            secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
         }
         else
         {
             // Wrong Answer.
             firstButtonText.text = "True";
-            firstButton.onClick.AddListener(() => { this.Reset(true); });
+            firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
             // Correct Answer.
             secondButtonText.text = "False";
-            secondButton.onClick.AddListener(() => { this.Reset(); });
+            secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
         }
     }
 
@@ -211,60 +225,60 @@ public class QuestionManager
         {
             case 1:
                 firstButtonText.text = question.correct_answer;
-                firstButton.onClick.AddListener(() => { this.Reset(); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
 
                 secondButtonText.text = question.incorrect_answers[0];
-                secondButton.onClick.AddListener(() => { this.Reset(true); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 thirdButtonText.text = question.incorrect_answers[1];
-                thirdButton.onClick.AddListener(() => { this.Reset(true); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 fourthButtonText.text = question.incorrect_answers[2];
-                fourthButton.onClick.AddListener(() => { this.Reset(true); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 break;
 
             case 2:
                 firstButtonText.text = question.incorrect_answers[2];
-                firstButton.onClick.AddListener(() => { this.Reset(true); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 secondButtonText.text = question.correct_answer;
-                secondButton.onClick.AddListener(() => { this.Reset(); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
 
                 thirdButtonText.text = question.incorrect_answers[0];
-                thirdButton.onClick.AddListener(() => { this.Reset(true); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 fourthButtonText.text = question.incorrect_answers[1];
-                fourthButton.onClick.AddListener(() => { this.Reset(true); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 break;
             case 3:
                 firstButtonText.text = question.incorrect_answers[1];
-                firstButton.onClick.AddListener(() => { this.Reset(true); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 secondButtonText.text = question.incorrect_answers[2];
-                secondButton.onClick.AddListener(() => { this.Reset(true); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 thirdButtonText.text = question.correct_answer;
-                thirdButton.onClick.AddListener(() => { this.Reset(); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
 
                 fourthButtonText.text = question.incorrect_answers[0];
-                fourthButton.onClick.AddListener(() => { this.Reset(true); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 break;
 
             case 4:
                 firstButtonText.text = question.incorrect_answers[0];
-                firstButton.onClick.AddListener(() => { this.Reset(true); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 secondButtonText.text = question.incorrect_answers[1];
-                secondButton.onClick.AddListener(() => { this.Reset(true); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 thirdButtonText.text = question.incorrect_answers[2];
-                thirdButton.onClick.AddListener(() => { this.Reset(true); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
 
                 fourthButtonText.text = question.correct_answer;
-                fourthButton.onClick.AddListener(() => { this.Reset(); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
 
                 break;
 
@@ -276,7 +290,29 @@ public class QuestionManager
         }
     }
 
-    private void Reset(bool decrementTries = false)
+    private void Reset()
+    {
+        questionPreset.SetActive(false);
+
+        questionText.text = string.Empty;
+
+        firstButton.gameObject.SetActive(false);
+        secondButton.gameObject.SetActive(false);
+        thirdButton.gameObject.SetActive(false);
+        fourthButton.gameObject.SetActive(false);
+
+        firstButtonText.text = string.Empty;
+        secondButtonText.text = string.Empty;
+        thirdButtonText.text = string.Empty;
+        fourthButtonText.text = string.Empty;
+
+        firstButton.onClick.RemoveAllListeners();
+        secondButton.onClick.RemoveAllListeners();
+        thirdButton.onClick.RemoveAllListeners();
+        fourthButton.onClick.RemoveAllListeners();
+    }
+
+    private void ResetAndDecrementUI(bool decrementTries = false)
     {
         questionPreset.SetActive(false);
 
@@ -297,9 +333,14 @@ public class QuestionManager
         thirdButton.onClick.RemoveAllListeners();
         fourthButton.onClick.RemoveAllListeners();
 
-        if(decrementTries)
+        if (decrementTries)
         {
             livesManager.DecrementLives();
+        }
+        else
+        {
+            OnQuestionClose?.Invoke(currentInstanceID);
+            OnQuestionCloseCallback?.Invoke(currentQuestion);
         }
     }
 }
