@@ -39,7 +39,12 @@ public abstract class Openable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(!IsEligibleToOpen())
+        ProcessOpenable();
+    }
+
+    protected virtual void ProcessOpenable()
+    {
+        if (!IsEligibleToOpen())
         {
             return;
         }
