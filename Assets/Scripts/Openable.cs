@@ -16,7 +16,7 @@ public abstract class Openable : MonoBehaviour
         {
             Debug.LogError("Couldn't find the player reference on application start.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -28,7 +28,7 @@ public abstract class Openable : MonoBehaviour
             {
                 Debug.LogError("Couldn't find the animation reference on application start.");
 
-                GameManager.QuitGame();
+                GameManager.instance.QuitGame();
                 return;
             }
         }

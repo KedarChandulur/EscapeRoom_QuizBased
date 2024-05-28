@@ -9,11 +9,13 @@ public class EndGameScript : MonoBehaviour
 
     void Start()
     {
-        if(this.transform.childCount != 2)
+        UnityEngine.Cursor.lockState = UnityEngine.CursorLockMode.None;
+
+        if (this.transform.childCount != 2)
         {
             Debug.LogError("Error with the end UI setup");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -21,7 +23,7 @@ public class EndGameScript : MonoBehaviour
         {
             Debug.LogError("Error with the retry button setup");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -29,7 +31,7 @@ public class EndGameScript : MonoBehaviour
         {
             Debug.LogError("Error with the quit button setup");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -37,7 +39,7 @@ public class EndGameScript : MonoBehaviour
         retryButton.onClick.AddListener(() => SceneManager.LoadScene("MainScene"));
 
         quitButton.onClick.RemoveAllListeners();
-        quitButton.onClick.AddListener(() => GameManager.QuitGame());
+        quitButton.onClick.AddListener(() => GameManager.instance.QuitGame());
     }
 
     void OnDestroy()

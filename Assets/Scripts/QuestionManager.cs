@@ -20,8 +20,7 @@ public class QuestionManager
 
     private readonly LivesManager livesManager = new LivesManager();
 
-    public static System.Action<int> OnQuestionClose;
-    public static System.Action<Question> OnQuestionCloseCallback;
+    public static System.Action<int, Question, bool> OnQuestionExit;
 
     private Question currentQuestion;
     private int currentInstanceID = 0;
@@ -34,7 +33,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error setting the question preset.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -44,7 +43,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the question preset child count.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -52,7 +51,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the question text.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -62,7 +61,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the options Transform.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -70,7 +69,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the first options button.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -78,7 +77,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the second options button.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -86,7 +85,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the third options button.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -94,7 +93,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the fourth options button.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -102,18 +101,18 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error with the close options button.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
         closeButton.onClick.RemoveAllListeners();
-        closeButton.onClick.AddListener(() => { this.Reset(); });
+        closeButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, false); });
 
         if (!firstButton.transform.GetChild(0).TryGetComponent<TMPro.TextMeshProUGUI>(out firstButtonText))
         {
             UnityEngine.Debug.LogError("Error setting the first button text.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -121,7 +120,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error setting the second button text.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -129,7 +128,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error setting the third button text.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -137,7 +136,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("Error setting the fourth button text.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -163,7 +162,7 @@ public class QuestionManager
         {
             UnityEngine.Debug.LogError("No question received.");
 
-            GameManager.QuitGame();
+            GameManager.instance.QuitGame();
             return;
         }
 
@@ -199,21 +198,21 @@ public class QuestionManager
         {
             // Correct Answer.
             firstButtonText.text = "True";
-            firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
+            firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, true); });
 
             // Wrong Answer.
             secondButtonText.text = "False";
-            secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+            secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
         }
         else
         {
             // Wrong Answer.
             firstButtonText.text = "True";
-            firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+            firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
             // Correct Answer.
             secondButtonText.text = "False";
-            secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
+            secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, true); });
         }
     }
 
@@ -225,67 +224,67 @@ public class QuestionManager
         {
             case 1:
                 firstButtonText.text = question.correct_answer;
-                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, true); });
 
                 secondButtonText.text = question.incorrect_answers[0];
-                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 thirdButtonText.text = question.incorrect_answers[1];
-                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 fourthButtonText.text = question.incorrect_answers[2];
-                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 break;
 
             case 2:
                 firstButtonText.text = question.incorrect_answers[2];
-                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 secondButtonText.text = question.correct_answer;
-                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, true); });
 
                 thirdButtonText.text = question.incorrect_answers[0];
-                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 fourthButtonText.text = question.incorrect_answers[1];
-                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 break;
             case 3:
                 firstButtonText.text = question.incorrect_answers[1];
-                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 secondButtonText.text = question.incorrect_answers[2];
-                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 thirdButtonText.text = question.correct_answer;
-                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, true); });
 
                 fourthButtonText.text = question.incorrect_answers[0];
-                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 break;
 
             case 4:
                 firstButtonText.text = question.incorrect_answers[0];
-                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                firstButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 secondButtonText.text = question.incorrect_answers[1];
-                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                secondButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 thirdButtonText.text = question.incorrect_answers[2];
-                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true); });
+                thirdButton.onClick.AddListener(() => { this.ResetAndDecrementUI(true, false); });
 
                 fourthButtonText.text = question.correct_answer;
-                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(); });
+                fourthButton.onClick.AddListener(() => { this.ResetAndDecrementUI(false, true); });
 
                 break;
 
             default:
                 UnityEngine.Debug.LogError("Some thing went wrong with random number selection.");
 
-                GameManager.QuitGame();
+                GameManager.instance.QuitGame();
                 break;
         }
     }
@@ -312,7 +311,7 @@ public class QuestionManager
         fourthButton.onClick.RemoveAllListeners();
     }
 
-    private void ResetAndDecrementUI(bool decrementTries = false)
+    private void ResetAndDecrementUI(bool decrementTries, bool isSuccessful)
     {
         questionPreset.SetActive(false);
 
@@ -337,10 +336,7 @@ public class QuestionManager
         {
             livesManager.DecrementLives();
         }
-        else
-        {
-            OnQuestionClose?.Invoke(currentInstanceID);
-            OnQuestionCloseCallback?.Invoke(currentQuestion);
-        }
+
+        OnQuestionExit?.Invoke(currentInstanceID, currentQuestion, isSuccessful);
     }
 }

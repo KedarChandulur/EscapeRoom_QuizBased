@@ -22,9 +22,20 @@ public class Question
 
 public class JsonParser
 {
+    Response currentResponse = new Response();
     private string url = "https://opentdb.com/api.php?amount=10&category=27";
 
-    public System.Collections.IEnumerator FetchData(Response currentResponse)
+    public void Initialize()
+    {
+        QuestionManager.OnQuestionExit += OnQuestionCloseCallback;
+    }
+
+    public void OnDestroyCall()
+    {
+        QuestionManager.OnQuestionExit -= OnQuestionCloseCallback;
+    }
+
+    public System.Collections.IEnumerator FetchData()
     {
         using (UnityEngine.Networking.UnityWebRequest webRequest = UnityEngine.Networking.UnityWebRequest.Get(this.url))
         {
@@ -36,7 +47,7 @@ public class JsonParser
             }
             else
             {
-                HandleResponse(webRequest.downloadHandler.text, currentResponse);
+                HandleResponse(webRequest.downloadHandler.text);
             }
         }
     }
@@ -46,7 +57,13 @@ public class JsonParser
         this.url = _url;
     }
 
-    private void HandleResponse(string jsonResponse, Response currentResponse)
+    public Question GetQuestion()
+    {
+        int randomValue = UnityEngine.Random.Range(0, currentResponse.results.Count);
+        return currentResponse.results[randomValue];
+    }
+
+    private void HandleResponse(string jsonResponse)
     {
         try
         {
@@ -77,6 +94,14 @@ public class JsonParser
         catch (Exception e)
         {
             Debug.LogError($"Exception during JSON deserialization: {e.Message}");
+        }
+    }
+
+    private void OnQuestionCloseCallback(int instanceID, Question question, bool questionCorrect)
+    {
+        if (questionCorrect)
+        {
+            currentResponse.results.Remove(question);
         }
     }
 }

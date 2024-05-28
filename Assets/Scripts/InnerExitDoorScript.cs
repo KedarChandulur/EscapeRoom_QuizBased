@@ -10,13 +10,13 @@ public class InnerExitDoorScript : Openable
 
     void Start()
     {
-        QuestionManager.OnQuestionClose += SetIsOpenOnQuestionClose;
+        QuestionManager.OnQuestionExit += SetIsOpenOnQuestionClose;
         base.Setup(15.0f);
     }
 
     private void OnDestroy()
     {
-        QuestionManager.OnQuestionClose -= SetIsOpenOnQuestionClose;
+        QuestionManager.OnQuestionExit -= SetIsOpenOnQuestionClose;
     }
 
     protected override void ProcessOpenable()
@@ -39,11 +39,11 @@ public class InnerExitDoorScript : Openable
         return canOpen;
     }
 
-    private void SetIsOpenOnQuestionClose(int instanceID)
+    private void SetIsOpenOnQuestionClose(int instanceID, Question question, bool questionCorrect)
     {
         if(this.GetInstanceID() == instanceID)
         {
-            canOpen = true;
+            canOpen = questionCorrect;
         }
     }
 

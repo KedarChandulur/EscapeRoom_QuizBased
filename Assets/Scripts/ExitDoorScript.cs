@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ExitDoorScript : Openable
 {
-    [SerializeField]
-    private ExitDoorScript adjacentDoor;
+    public static Action ShowCodePanel;
     [SerializeField]
     private string openAnimName = "";
     [SerializeField]
@@ -14,7 +14,28 @@ public class ExitDoorScript : Openable
 
     void Start()
     {
+        CodeManager.OnCodePanelExit += OnCodePanelExit;
         base.Setup(15.0f);
+    }
+
+    private void OnDestroy()
+    {
+        CodeManager.OnCodePanelExit -= OnCodePanelExit;
+    }
+
+    protected override void ProcessOpenable()
+    {
+        if (canOpen)
+        {
+            base.ProcessOpenable();
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ShowCodePanel?.Invoke();
+            }
+        }
     }
 
     protected override bool IsEligibleToOpen()
@@ -32,5 +53,10 @@ public class ExitDoorScript : Openable
     {
         base.PlayAnimation(closeAnimName);
         yield return new WaitForSeconds(.5f);
+    }
+
+    private void OnCodePanelExit(bool value)
+    {
+        this.canOpen = value;
     }
 }

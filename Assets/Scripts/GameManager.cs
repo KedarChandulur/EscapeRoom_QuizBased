@@ -5,11 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private Response currentResponse = new Response();
     private JsonParser jsonParser = new JsonParser();
 
     private void Awake()
     {
+        jsonParser.Initialize();
+
         if(instance == null)
         {
             instance = this;
@@ -22,31 +23,47 @@ public class GameManager : MonoBehaviour
 
         SceneManager.activeSceneChanged += OnSceneChanged;
         LivesManager.AllLivesEndEvent += AllLivesEndEvent;
-        QuestionManager.OnQuestionCloseCallback += OnQuestionCloseCallback;
     }
 
     private void OnDestroy()
     {
+        jsonParser.OnDestroyCall();
+
         SceneManager.activeSceneChanged -= OnSceneChanged;
         LivesManager.AllLivesEndEvent -= AllLivesEndEvent;
-        QuestionManager.OnQuestionCloseCallback -= OnQuestionCloseCallback;
     }
 
     private void OnSceneChanged(Scene arg0, Scene newSceneName)
     {
         if(newSceneName.buildIndex == 1)
         {
-            StartCoroutine(jsonParser.FetchData(this.currentResponse));
+            StartCoroutine(jsonParser.FetchData());
         }
     }
 
-    public static void QuitGame()
+    public void QuitGame()
     {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.ExitPlaymode();
 #else
             Application.Quit();
 #endif
+    }
+
+    private void AllLivesEndEvent()
+    {
+        Debug.LogError("Game Over");
+        SceneManager.LoadScene("EndGame");
+    }
+
+    public Question GetQuestion()
+    {
+        return jsonParser.GetQuestion();
+    }
+
+    public void UpdateAPI(string value)
+    {
+        jsonParser.SetURL(value);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -59,26 +76,5 @@ public class GameManager : MonoBehaviour
             gameManagerObject.tag = "GameController";
             DontDestroyOnLoad(gameManagerObject);
         }
-    }
-
-    private void AllLivesEndEvent()
-    {
-        Debug.LogError("Game Over");
-        SceneManager.LoadScene("EndGame");
-    }
-
-    public Question GetQuestion()
-    {
-        int randomValue = UnityEngine.Random.Range(0, currentResponse.results.Count);
-        return currentResponse.results[randomValue];
-    }
-
-    private void OnQuestionCloseCallback(Question question)
-    {
-        Debug.LogError(currentResponse.results.Count);
-
-        currentResponse.results.Remove(question);
-
-        Debug.LogError(currentResponse.results.Count);
     }
 }
