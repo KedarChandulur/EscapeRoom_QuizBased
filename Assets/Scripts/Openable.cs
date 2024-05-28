@@ -6,6 +6,9 @@ public abstract class Openable : MonoBehaviour
     private Animator anim;
     private Transform player;
     private float interactableDistance;
+
+    [SerializeField]
+    private bool canOpen = true;
     private bool isOpen;
 
     protected void Setup(float playerInteractableDistance)
@@ -16,9 +19,7 @@ public abstract class Openable : MonoBehaviour
         {
             Debug.LogError("Couldn't find the player reference on application start.");
 
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.ExitPlaymode();
-#endif
+            GameManager.QuitGame();
             return;
         }
 
@@ -30,10 +31,7 @@ public abstract class Openable : MonoBehaviour
             {
                 Debug.LogError("Couldn't find the animation reference on application start.");
 
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.ExitPlaymode();
-#endif
-
+                GameManager.QuitGame();
                 return;
             }
         }
@@ -44,6 +42,11 @@ public abstract class Openable : MonoBehaviour
 
     void OnMouseOver()
     {
+        if(!canOpen)
+        {
+            return;
+        }
+
         if (!player)
         {
             Debug.LogError("Lost reference to player");
