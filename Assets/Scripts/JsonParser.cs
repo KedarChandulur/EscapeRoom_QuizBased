@@ -22,10 +22,9 @@ public class Question
 
 public class JsonParser
 {
-    Response currentResponse = new Response();
     private string url = "https://opentdb.com/api.php?amount=10&category=27";
 
-    public System.Collections.IEnumerator FetchData()
+    public System.Collections.IEnumerator FetchData(Response currentResponse)
     {
         using (UnityEngine.Networking.UnityWebRequest webRequest = UnityEngine.Networking.UnityWebRequest.Get(this.url))
         {
@@ -37,12 +36,17 @@ public class JsonParser
             }
             else
             {
-                HandleResponse(webRequest.downloadHandler.text);
+                HandleResponse(webRequest.downloadHandler.text, currentResponse);
             }
         }
     }
 
-    void HandleResponse(string jsonResponse)
+    public void SetURL(string _url)
+    {
+        this.url = _url;
+    }
+
+    private void HandleResponse(string jsonResponse, Response currentResponse)
     {
         try
         {
@@ -74,10 +78,5 @@ public class JsonParser
         {
             Debug.LogError($"Exception during JSON deserialization: {e.Message}");
         }
-    }
-
-    public void SetURL(string _url)
-    {
-        this.url = _url;
     }
 }

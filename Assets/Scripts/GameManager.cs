@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    private Response currentResponse = new Response();
     private JsonParser jsonParser = new JsonParser();
 
     private void Awake()
@@ -21,19 +22,21 @@ public class GameManager : MonoBehaviour
 
         SceneManager.activeSceneChanged += OnSceneChanged;
         LivesManager.AllLivesEndEvent += AllLivesEndEvent;
+        QuestionManager.OnQuestionCloseCallback += OnQuestionCloseCallback;
     }
 
     private void OnDestroy()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
         LivesManager.AllLivesEndEvent -= AllLivesEndEvent;
+        QuestionManager.OnQuestionCloseCallback -= OnQuestionCloseCallback;
     }
 
     private void OnSceneChanged(Scene arg0, Scene newSceneName)
     {
         if(newSceneName.buildIndex == 1)
         {
-            StartCoroutine(jsonParser.FetchData());
+            StartCoroutine(jsonParser.FetchData(this.currentResponse));
         }
     }
 
@@ -62,5 +65,20 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogError("Game Over");
         SceneManager.LoadScene("EndGame");
+    }
+
+    public Question GetQuestion()
+    {
+        int randomValue = UnityEngine.Random.Range(0, currentResponse.results.Count);
+        return currentResponse.results[randomValue];
+    }
+
+    private void OnQuestionCloseCallback(Question question)
+    {
+        Debug.LogError(currentResponse.results.Count);
+
+        currentResponse.results.Remove(question);
+
+        Debug.LogError(currentResponse.results.Count);
     }
 }
