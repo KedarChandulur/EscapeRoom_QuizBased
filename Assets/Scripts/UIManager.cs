@@ -25,13 +25,22 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        cursorStateTracker.Initialize(this.transform.GetChild(0));
         questionManager.Initialize(this.transform.GetChild(1), this);
+        cursorStateTracker.Initialize(this.transform.GetChild(0), questionManager);
+
+        InnerExitDoorScript.ShowQuestion += ShowQuestion;
     }
 
     private void OnDestroy()
     {
         questionManager.OnDestroyCall();
+
+        InnerExitDoorScript.ShowQuestion -= ShowQuestion;
+    }
+
+    private void ShowQuestion(int instanceID)
+    {
+        questionManager.ShowQuestion(GameManager.instance.GetQuestion(), instanceID);
     }
 
     private void Update()
