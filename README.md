@@ -13,8 +13,6 @@ After import some scripts get replaced with the package scripts, you need to go 
 Finally you can test the Main Scene now or open any other scripts if needed.
 
 # Additional Info
-This game is the third of three I created as part of a course during my master's program.
-
 For the design of Escape Room, I utilized the Triadic Game Design framework to balance the World of Reality, the World of Meaning, and the World of Play.
 
 The programming was done in Unity using C#, adhering to SOLID principles and incorporating various software design patterns.
