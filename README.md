@@ -12,6 +12,8 @@ After import some scripts get replaced with the package scripts, you need to go 
 
 Finally you can test the Main Scene now or open any other scripts if needed.
 
+Game demo can be downloaded from here: [Game_Demos](https://drive.google.com/drive/folders/1R_cf1DxQs3nRPIJxcY0E4LptXCEE-De5?usp=sharing)
+
 # Additional Info
 For the design of Escape Room, I utilized the Triadic Game Design framework to balance the World of Reality, the World of Meaning, and the World of Play.
 
