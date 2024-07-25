@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        jsonParser.Initialize();
-
         if(instance == null)
         {
             instance = this;
@@ -20,6 +18,8 @@ public class GameManager : MonoBehaviour
             Destroy(instance);
             return;
         }
+
+        jsonParser.Initialize();
 
         SceneManager.activeSceneChanged += OnSceneChanged;
         LivesManager.AllLivesEndEvent += AllLivesEndEvent;
